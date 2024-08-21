@@ -1,14 +1,32 @@
+// src/App.tsx
 import React from 'react';
-import Sketch from './components/Sketch';
-import ArtPiece from './components/ArtPiece';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Work1 from './pages/Work1';
+import Work2 from './pages/Work2';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center space-y-8">
-      <h1 className="text-4xl font-bold text-blue-500">My Portfolio</h1>
-      <Sketch />
-      <ArtPiece title="Sample Art" image="https://via.placeholder.com/150" />
-    </div>
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/work1">Work 1</Link>
+          </li>
+          <li>
+            <Link to="/work2">Work 2</Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/work1" element={<Work1 />} />
+        <Route path="/work2" element={<Work2 />} />
+      </Routes>
+    </Router>
   );
 }
 
