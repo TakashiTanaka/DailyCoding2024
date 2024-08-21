@@ -5,20 +5,16 @@ import Home from './pages/Home';
 import Work1 from './pages/Work1';
 import Work2 from './pages/Work2';
 
-function App() {
+const App: React.FC = () => {
+  const basename = process.env.NODE_ENV === 'production' ? '/DailyCoding2024' : '';
+
   return (
-    <Router>
+    <Router basename={basename}>
       <nav>
         <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/work1">Work 1</Link>
-          </li>
-          <li>
-            <Link to="/work2">Work 2</Link>
-          </li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/work1">Work 1</Link></li>
+          <li><Link to="/work2">Work 2</Link></li>
         </ul>
       </nav>
       <Routes>
@@ -28,6 +24,6 @@ function App() {
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
