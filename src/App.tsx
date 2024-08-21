@@ -10,13 +10,6 @@ const App: React.FC = () => {
 
   return (
     <Router basename={basename}>
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/work1">Work 1</Link></li>
-          <li><Link to="/work2">Work 2</Link></li>
-        </ul>
-      </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/work1" element={<Work1 />} />
