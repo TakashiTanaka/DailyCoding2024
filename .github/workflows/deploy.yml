@@ -1,22 +1,17 @@
 name: Deploy static content to Pages
 
 on:
-  # ★★★Github Actionsを起動するブランチ★★★
   push:
-    branches: ["main"]
-
-  # Github Actionsを手動で起動できるようにする。
+    branches: ['main']
   workflow_dispatch:
 
-# パーミッションの設定
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# これを指定していると、重複してActionsが走った時に前のをキャンセルしてくれる
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -34,13 +29,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: build
+      - name: Build
         run: npm ci && npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # ★★★ Deployするディレクトリ ★★★
-          path: '.'
+          path: './build'
+          name: 'github-pages' # アーティファクト名を明示的に指定
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@main
+        uses: actions/deploy-pages@v1
